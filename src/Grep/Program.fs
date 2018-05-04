@@ -2,6 +2,13 @@
 
 let currentDir = DirectoryInfo(".").FullName
 
+let skips = [
+    "packages"
+    "node_modules"
+    "tools"
+    ".git"
+]
+
 let findText (info: FileInfo) text =
     let lines = File.ReadLines(info.FullName)
     let mutable line = 1
@@ -14,8 +21,7 @@ let findText (info: FileInfo) text =
             line <- line + 1
 
 let rec grep (dir: DirectoryInfo) pattern text =
-    if dir.Name = ".node_modules" then ()
-    elif dir.Name = "packages" then ()
+    if skips |> List.exists ((=) dir.Name) then ()
     else
         let files = dir.GetFiles(pattern)
         for item in files  do
