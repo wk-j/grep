@@ -1,6 +1,6 @@
 ## Grep
 
-Find text in `.cs` `.fs` `.xml`
+Search text in files
 
 ## Installation
 
@@ -11,15 +11,14 @@ dotnet tool install -g wk.Grep
 ## Usage
 
 ```bash
-wk-grep <DIR> <TEXT>
+wk-grep <FILE-PATTERN> <TEXT>
 ```
 
 ```bash
-> wk-grep . "Name"
-src/Grep/Program.fs [0001] let currentDir = DirectoryInfo(".").FullName
-src/Grep/Program.fs [0002]     let lines = File.ReadLines(info.FullName)
-src/Grep/Program.fs [0003]             printfn "%s [%s] %s"  (info.FullName.Replace(currentDir, "").TrimStart('/')) (line.ToString("D4")) item
-src/Grep/Program.fs [0004]     if dir.Name = ".node_modules" then ()
-src/Grep/Program.fs [0005]     elif dir.Name = "packages" then ()
-src/Grep/obj/DotnetToolSettings.xml [0001]     <Command Name="wk-grep" EntryPoint="Grep.dll" Runner="dotnet" />
+❯❯❯ wk-grep "*.fs" Name
+ 0001 [src/Grep/Program.fs] let currentDir = DirectoryInfo(".").FullName
+ 0002 [src/Grep/Program.fs]     let lines = File.ReadLines(info.FullName)
+ 0003 [src/Grep/Program.fs]                 (info.FullName.Replace(currentDir, "").TrimStart('/'))
+ 0004 [src/Grep/Program.fs]     if dir.Name = ".node_modules" then ()
+ 0005 [src/Grep/Program.fs]     elif dir.Name = "packages" then ()
 ```

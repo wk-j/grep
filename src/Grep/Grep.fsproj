@@ -4,7 +4,7 @@
     <ToolCommandName>wk-grep</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <PackageId>wk.Grep</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
