@@ -10,25 +10,26 @@ let skips = [
 ]
 
 let findText (info: FileInfo) text =
-    let lines = File.ReadLines(info.FullName)
-    let mutable line = 1
-    for item in lines do
-         if item.Contains(text: string) then
+    let fullName = info.FullName
+    let mutable lineNumber = 1
+    let lines = File.ReadLines fullName
+    lines |> Seq.iter (fun item ->
+        if item.Contains(text: string) then
             printfn " %s [%s] %s"
-                (line.ToString("D4"))
-                (info.FullName.Replace(currentDir, "").TrimStart('/'))
+                (lineNumber.ToString("D4"))
+                (fullName.Replace(currentDir, "").TrimStart('/'))
                 (item)
-            line <- line + 1
+            lineNumber <- lineNumber + 1
+    )
 
 let rec grep (dir: DirectoryInfo) pattern text =
     if skips |> List.exists ((=) dir.Name) then ()
     else
-        let files = dir.GetFiles(pattern)
-        for item in files  do
-            findText item text
-        let dirs = dir.GetDirectories()
-        for item in dirs do
-            grep item pattern text
+        dir.GetFiles(pattern)
+        |> Seq.iter (fun item ->  findText item text)
+
+        dir.GetDirectories()
+        |> Seq.iter (fun item -> grep item pattern text)
 
 [<EntryPoint>]
 let main argv =
