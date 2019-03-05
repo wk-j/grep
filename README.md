@@ -1,5 +1,7 @@
 ## Grep
 
+[![NuGet](https://img.shields.io/nuget/v/wk.Grep.svg)](https://www.nuget.org/packages/wk.Grep)
+
 Search text in files
 
 ## Installation
