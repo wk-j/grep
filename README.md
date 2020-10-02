@@ -1,5 +1,6 @@
 ## Grep
 
+[![Actions](https://github.com/wk-j/grep/workflows/Build/badge.svg)](https://github.com/wk-j/grep/actions)
 [![NuGet](https://img.shields.io/nuget/v/wk.Grep.svg)](https://www.nuget.org/packages/wk.Grep)
 
 Search text in files
